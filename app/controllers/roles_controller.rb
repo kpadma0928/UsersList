@@ -4,8 +4,13 @@ class RolesController < ApplicationController
 	end
 
 	def create
-		@role = Role.create(name: params[:role][:name], hide: false)
-		redirect_to root_path, notice: "Role created successfully"
+		@role = Role.new(name: params[:role][:name], hide: false)
+		if @role.save
+			redirect_to root_path, notice: "Role created successfully"
+		else
+			render 'new'
+		end
+
 	end
 
 	def index

@@ -1,5 +1,7 @@
 <%= link_to "Add USer", "users/new", class:"btn btn-primary"%>
 <br><br>
+
+<%=select_tag "role", options_from_collection_for_select(Role.show_list, "id", "name"), prompt: "Select Role",class: 'form-control', onclick: "updateUsers()" %><br>
 <table class='table', id="users_table">
   <thead>
       <tr>
@@ -9,17 +11,8 @@
         <th>Roles &nbsp; &nbsp; &nbsp;</th>
       </tr>
   </thead>
-  <tbody>
-      <% if @users.present? %>
-      <% @users.each do |user| %>
-          <tr>
-            <td><%= user.first_name%></td>
-            <td><%= user.last_name%></td>
-            <td><%= user.email%></td>
-            <td><%= user.roles.map(&:name).join(", ")%></td>
-          </tr>
-      <% end %>
-      <% end %>
+  <tbody id="user_list">
+    <%= render "users_list" %>
   </tbody>
 
     </table>
@@ -28,6 +21,18 @@
   $(document).ready(function() {
     $('#users_table').dataTable()
   })
+
+function updateUsers(){
+  var role = $('#role').val()
+  $.ajax({
+    method: 'GET',
+    url: '/role_users',
+    data: {role: role},
+    success: function(data){
+      $('#user_list').html(data)
+    }
+  })
+}
 
 </script>
 

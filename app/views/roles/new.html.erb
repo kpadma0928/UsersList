@@ -1,7 +1,16 @@
+<% @role.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= message %>
+    </div>
+<% end %>
+
+Add Role <br>
+
 <%= form_for @role do |f| %>
 
-  <%= f.text_field :name, placeholder: 'Enter Role Name' %>
+  <%= f.text_field :name, placeholder: 'Enter Role Name', class:'form-control' %><br>
 
-  <%= f.button :submit %>
+  <%= f.button "Add Role", class:'btn btn-primary' %>
 
 <% end %>

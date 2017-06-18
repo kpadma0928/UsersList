@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :roles
   put "hide_roles" => "roles#hide_roles", as: :hide_roles
+  get 'role_users' => 'users#role_users'
   resources :users
 end

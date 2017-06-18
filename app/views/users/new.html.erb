@@ -19,6 +19,7 @@
     <%= f.label :role %>
     <%= collection_select(:roles, :id, Role.where(hide: false), :id, :name, options ={selected: @user.roles_list.pluck(:id)}, width: '100%', multiple: true,class: 'form-control')%>
     <br><br><br>
+
     <%= f.submit "Save changes", class: "btn btn-primary" %>
 <% end %>
 

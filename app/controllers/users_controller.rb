@@ -29,6 +29,12 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def role_users
+		roles = (params[:role].present? ? [params[:role]] : Role.where(hide: false).map(&:id))
+		@users = User.joins(:roles).where(:roles => { id: roles })
+		puts "FFFFFFF #{@users.inspect}"
+		render partial: 'users_list', users: @users
+	end
 	private
 
 	def user_params
