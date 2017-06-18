@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UserManagement</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/css/dataTables.bootstrap.min.css">
+  </head>
+
+  <body>
+  <script src="/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/dataTables.bootstrap.min.js"></script>
+  <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+          <div class="alert alert-<%= name %>">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= msg %>
+          </div>
+      <% end %>
+  <% end %>
+    <%= yield %>
+  </body>
+</html>

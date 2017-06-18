@@ -1,0 +1,24 @@
+<%= form_tag hide_roles_path, :method => 'put' do %>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name &nbsp; &nbsp; &nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+   <% @roles.each do |role| %>
+  <tr>
+    <td><%= check_box_tag 'role_ids[]', "#{role.id}", role.hide, class: 'accept_tos'%><%= role.name %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= submit_tag "Hide Roles", id: "commit", class: 'btn btn-primary' %>
+<% end %>
+
+<br><br>
+
+<%= link_to "Home", root_path, class: 'btn btn-primary'%>
+
+

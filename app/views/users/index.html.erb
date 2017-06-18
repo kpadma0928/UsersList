@@ -1,0 +1,35 @@
+<%= link_to "Add USer", "users/new", class:"btn btn-primary"%>
+<br><br>
+<table class='table', id="users_table">
+  <thead>
+      <tr>
+        <th>First Name &nbsp; &nbsp; &nbsp;</th>
+        <th>Last Name &nbsp; &nbsp; &nbsp;</th>
+        <th>Email &nbsp; &nbsp; &nbsp;</th>
+        <th>Roles &nbsp; &nbsp; &nbsp;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% if @users.present? %>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name%></td>
+            <td><%= user.last_name%></td>
+            <td><%= user.email%></td>
+            <td><%= user.roles.map(&:name).join(", ")%></td>
+          </tr>
+      <% end %>
+      <% end %>
+  </tbody>
+
+    </table>
+<%= link_to "Home", root_path, class:"btn btn-primary"%>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#users_table').dataTable()
+  })
+
+</script>
+
+
+
